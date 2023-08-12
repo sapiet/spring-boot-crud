@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .      # Le chemin vers le répertoire contenant le Dockerfile
+      dockerfile: Dockerfile   # Nom du fichier Dockerfile
+    ports:
+      - "8080:8080"   # Mappage des ports (port_hôte:port_conteneur)
+    volumes:
+      - ./src:/app/src
