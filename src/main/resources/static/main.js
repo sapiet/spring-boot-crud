@@ -1,12 +1,14 @@
 const { createApp, ref } = Vue
 const API_URL = 'http://localhost:8080';
-const URL = (endpoint) => API_URL + endpoint;
+const endpoint = window.location.hash.substr(1);
+const URL = () => API_URL + '/' + endpoint;
 
 createApp({
     data() {
         return {
+            endpoint: endpoint,
             name: '',
-            employees: []
+            items: []
         }
     },
 
@@ -16,10 +18,10 @@ createApp({
 
     methods: {
         list() {
-            fetch(URL('/employee'))
+            fetch(URL())
                 .then(response => response.json())
                 .then(data => {
-                    this.employees = data._embedded.employee;
+                    this.items = data._embedded[endpoint];
                 })
         },
 
@@ -27,7 +29,7 @@ createApp({
             event.preventDefault();
 
             fetch(
-                URL('/employee'),
+                URL(),
                 {
                     method: 'POST',
                     headers: {

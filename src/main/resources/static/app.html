@@ -10,7 +10,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/app.html">
+        <a class="navbar-brand" href="/app.html#employee">
             Employees
         </a>
 
@@ -21,8 +21,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/app.html">
+                    <a class="nav-link active" aria-current="page" href="/app.html#employee">
                         List
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/app.html#tasks">
+                        Tasks
                     </a>
                 </li>
             </ul>
@@ -32,20 +38,22 @@
 
 <div id="app">
     <div class="container my-5">
-        <table class="table">
+        <h1>{{ endpoint }}</h1>
+
+        <table class="table mt-5">
             <tr>
                 <th>Name</th>
             </tr>
-            <tr v-for="employee in employees">
+            <tr v-for="item in items">
                 <td>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Name" v-model="employee.name">
+                        <input type="text" class="form-control" placeholder="Name" v-model="item.name">
 
-                        <button class="btn btn-primary" @click="update(employee)">
+                        <button class="btn btn-primary" @click="update(item)">
                             Update
                         </button>
 
-                        <button class="btn btn-danger me-3" @click="remove(employee)">
+                        <button class="btn btn-danger me-3" @click="remove(item)">
                             Delete
                         </button>
                     </div>
